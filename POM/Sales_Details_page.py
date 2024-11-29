@@ -1,35 +1,34 @@
+
+
+from selenium.webdriver.support.wait import WebDriverWait
+
 from LIBRARY.lib import Generic_code
 from LIBRARY.Excel import read_locators
 
-class Login_Page:
+
+class Sales_Deatils:
     _locators=read_locators("Locators")
-    def __init__(self,driver):
+
+    def _init_(self,driver):
         self.driver=driver
         self.s=Generic_code(self.driver)
+        self.wait = WebDriverWait(self.driver, 10)
 
-    def login(self,login_id):
-
+    def enter_mob_num(self,mobile_num):
         try:
-            self.s.enter_text(self._locators["txt_login_id"],value=login_id)
+
+            self.s.enter_text(self._locators["txt_mblno"],value=mobile_num)
         except Exception as e:
-            raise Exception(f"Error login ID: {str(e)}")
+            raise Exception(f"Error entering mobile number :{str(e)}")
 
-
-    def pword(self,pwd):
+    def fetch_btn(self):
         try:
-            self.s.enter_text(self._locators["txt_pwd"],value=pwd)
+            self.s.click_element(self._locators["btn_fetch_detail"])
         except Exception as e:
-            raise Exception(f"Error entering password: {str(e)}")
+            raise Exception(f"Error clicking Fetch details button:{str(e)} ")
 
-    def log_btn(self):
+    def ok_btn(self):
         try:
-            self.s.click_element(self._locators["btn_login"])
+            self.s.click_element(self._locators["btn_OK"])
         except Exception as e:
-            raise Exception(f"Error clicking login button: {str(e)}")
-
-
-    def new_applctn(self):
-        try:
-            self.s.click_element(self._locators["clk_New_Appn"])
-        except Exception as e:
-            raise Exception(f"Error clicking new application: {str(e)}")
+            raise Exception(f"Error clicking ok button:{str(e)}")

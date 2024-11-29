@@ -3,6 +3,7 @@ from LIBRARY.Excel import read_locators
 
 class Login_Page:
     _locators=read_locators("Locators")
+
     def __init__(self,driver):
         self.driver=driver
         self.s=Generic_code(self.driver)
