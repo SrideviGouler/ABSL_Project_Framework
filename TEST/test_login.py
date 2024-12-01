@@ -4,16 +4,16 @@ from LIBRARY.lib import Generic_code
 from LIBRARY.Excel import read_locators,read_headers,read_data
 from pytest import mark
 from POM.Login_page import Login_Page
-from POM.Sales_Details_page import Sales_Deatils
+from POM.Sales_Details_page import Sales_details
 
 headers=read_headers("test_login_positive","Test_data")
 data=read_data("test_login_positive","Test_data")
 
 @mark.parametrize(headers,data)
-def test_login(_driver,login_id,password):
+def test_login(_driver,login_id,password,mobile_num):
     s=Generic_code(_driver)
     logpage=Login_Page(_driver)
-    sales_page = Sales_Deatils()
+    sales_page = Sales_details(_driver)
 
     try:
         logpage.login(login_id)
@@ -21,7 +21,7 @@ def test_login(_driver,login_id,password):
         logpage.log_btn()
         logpage.new_applctn()
         sleep(2)
-        sales_page.enter_mob_num()
+        sales_page.enter_mob_num(mobile_num)
         sleep(2)
         sales_page.fetch_btn()
         sleep(2)

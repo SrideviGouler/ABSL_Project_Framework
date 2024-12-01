@@ -27,6 +27,7 @@ class Stage_configurations:
     url = "https://leappreprod.adityabirlasunlifeinsurance.com/preprod/#/login"
     log_id = "IN076761"
     password = "str"
+
 @fixture
 def _config(request):
     env_var=request.config.option.env.upper()
